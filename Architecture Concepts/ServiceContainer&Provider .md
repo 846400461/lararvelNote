@@ -105,8 +105,6 @@ testServiceProvider.php
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use app\lib\Superman\Aman;
-use app\lib\Superman\Superguy;
 
 class testServiceProvider extends ServiceProvider
 {
@@ -127,14 +125,9 @@ class testServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('Superguy',function()
-        {
-            return new Aman();
-        });
+         $this->app->bind('Superguy','app\lib\Superman\Superguy');
 
-        $this->app->singleton('test',function(){
-            return new Aman();
-        });
+        $this->app->bind('app\lib\Superman\Superguy','app\lib\Superman\Aman');
     }
 }
 ```
@@ -224,4 +217,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 ```
+
+
 
